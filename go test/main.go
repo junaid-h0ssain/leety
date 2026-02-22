@@ -1,22 +1,10 @@
+package main
 
 
-func twoSum(nums []int, target int) []int {
-	n := len(nums)
-	for i := 0; i < n; i++ {
-		for j := i + 1; j < n; j++ {
-			if nums[i]+nums[j] == target {
-				arr := []int{i, j}
-				return arr
-			}
-		}
-	}
-	return nil
-}
+import (	
+	"fmt"
+)
 
-// twoSum finds two numbers in the nums slice that add up to the target value.
-// It returns a slice containing the indices of the two numbers that sum to target.
-// If no such pair exists, it returns nil.
-// Time Complexity: O(n), Space Complexity: O(n)
 func twoSum(nums []int, target int) []int {
 	// nmap stores each number and its corresponding index for quick lookup
 	nmap := make(map[int]int)
@@ -32,4 +20,11 @@ func twoSum(nums []int, target int) []int {
 	}
 	// No two numbers found that sum to target
 	return nil
+}
+
+func main() {
+	nums := []int{3,3}
+	target := 9
+	result := twoSum(nums, target)
+	fmt.Println(result) // Output: [0, 1]
 }
