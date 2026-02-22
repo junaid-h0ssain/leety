@@ -1,15 +1,17 @@
 package javatest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         Solution s = new Solution();
-        int [] nums = {1,2,3,4,5};
-        boolean result = s.containsDuplicate(nums);
-        System.out.println("Contains duplicate: " + result);
+        int [] nums = {4,3,2,7,8,2,3,1};
+        List<Integer> result = s.findDisappearedNumbers(nums);
+        System.out.println("Missing numbers: " + result);
     }
 }
 
@@ -50,5 +52,23 @@ class Solution {
         if(n.size()<nums.length)
             return true;
         return false;
+    }
+
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        
+        ArrayList<Integer> arr = new ArrayList<>();
+        HashSet<Integer> n = new HashSet<>();
+
+        for(int i=1;i<nums.length;i++){
+            n.add(nums[i]);
+        }   
+
+        for(int i=1; i<nums.length;i++){
+            if(!n.contains(i)){
+                arr.add(i);
+            }
+        }
+
+        return arr;
     }
 }

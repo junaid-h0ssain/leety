@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
-
+	
 )
 
 func twoSumArray(nums []int, target int) []int {
@@ -20,7 +20,7 @@ func twoSumArray(nums []int, target int) []int {
 }
 
 func twoSumMap(nums []int, target int) []int {
-	// nmap stores each number and its corresponding index for quick lookup
+	
 	nmap := make(map[int]int)
 	for i, num := range nums {
 		if j, ok := nmap[target-num]; ok {
@@ -43,8 +43,24 @@ func containsDuplicate(nums []int) bool {
 	return false
 }
 
+func findDisappearedNumbers(nums []int) []int {
+    
+	n := len(nums)
+	nmap := make(map[int]bool)
+	for _, num := range nums {
+		nmap[num] = true
+	}
+	arr := []int{}
+	for i := 1; i <= n; i++ {
+		if !nmap[i] {
+			arr = append(arr, i)
+		}
+	}
+	return arr
+}
+
 func main() {
-	nums := []int{6, 2, 3, 6}
-	result := containsDuplicate(nums)
+	nums := []int{1,1}
+	result := findDisappearedNumbers(nums)
 	fmt.Println(result)
 }
