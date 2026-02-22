@@ -1,14 +1,15 @@
 package javatest;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        int [] nums = {3,2,4};
-        int target = 6;
         Solution s = new Solution();
-        int [] result = s.twoSumMap(nums, target);
-        System.out.println(result[0] + " " + result[1]);
+        int [] nums = {1,2,3,4,5};
+        boolean result = s.containsDuplicate(nums);
+        System.out.println("Contains duplicate: " + result);
     }
 }
 
@@ -39,5 +40,15 @@ class Solution {
         }
 
         return null;
+    }
+
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> n = new HashSet<>();
+        for (int i=0; i<nums.length; i++){
+            n.add(nums[i]);
+        }
+        if(n.size()<nums.length)
+            return true;
+        return false;
     }
 }

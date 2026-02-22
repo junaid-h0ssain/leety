@@ -1,8 +1,9 @@
 package main
 
-
-import (	
+import (
 	"fmt"
+	"sort"
+
 )
 
 func twoSumArray(nums []int, target int) []int {
@@ -22,29 +23,28 @@ func twoSumMap(nums []int, target int) []int {
 	// nmap stores each number and its corresponding index for quick lookup
 	nmap := make(map[int]int)
 	for i, num := range nums {
-		if j, ok := nmap[target-num]; ok{
-			return []int{j,i}
+		if j, ok := nmap[target-num]; ok {
+			return []int{j, i}
 		}
-		nmap[num]=i
+		nmap[num] = i
 	}
 	return nil
 }
 
-func containsDuplicateArray(nums []int) bool {
-	
-    n := len(nums)
-	for i := range n {
-		for j := range n {
-			if i==j{
-				return true
-			}
+func containsDuplicate(nums []int) bool {
+	sort.Ints(nums)
+	n := len(nums)
+	for i := 1; i < n; i++ {
+		if nums[i] == nums[i-1] {
+			return true
 		}
+		fmt.Println(nums[i])
 	}
 	return false
 }
 
 func main() {
-	nums := []int{3,2,4,3}
-	result := containsDuplicateArray(nums)
+	nums := []int{6, 2, 3, 6}
+	result := containsDuplicate(nums)
 	fmt.Println(result)
 }
