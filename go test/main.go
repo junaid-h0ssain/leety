@@ -5,26 +5,46 @@ import (
 	"fmt"
 )
 
-func twoSum(nums []int, target int) []int {
-	// nmap stores each number and its corresponding index for quick lookup
-	nmap := make(map[int]int)
-	// Iterate through each number in the input slice with its index
-	for i, num := range nums {
-		// Check if the complement (target - current number) exists in the map
-		if j, ok := nmap[target-num]; ok {
-			// If complement found, return the indices of both numbers
-			return []int{j, i}
+func twoSumArray(nums []int, target int) []int {
+	n := len(nums)
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			if nums[i]+nums[j] == target {
+				arr := []int{i, j}
+				return arr
+			}
 		}
-		// Store the current number and its index in the map for future lookups
-		nmap[num] = i
 	}
-	// No two numbers found that sum to target
 	return nil
 }
 
+func twoSumMap(nums []int, target int) []int {
+	// nmap stores each number and its corresponding index for quick lookup
+	nmap := make(map[int]int)
+	for i, num := range nums {
+		if j, ok := nmap[target-num]; ok{
+			return []int{j,i}
+		}
+		nmap[num]=i
+	}
+	return nil
+}
+
+func containsDuplicateArray(nums []int) bool {
+	
+    n := len(nums)
+	for i := range n {
+		for j := range n {
+			if i==j{
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func main() {
-	nums := []int{3,3}
-	target := 9
-	result := twoSum(nums, target)
-	fmt.Println(result) // Output: [0, 1]
+	nums := []int{3,2,4,3}
+	result := containsDuplicateArray(nums)
+	fmt.Println(result)
 }
