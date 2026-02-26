@@ -20,11 +20,11 @@ func isPalindrome(x int) bool {
 
 	d := 1
 
-	for x<10*d {
+	for x>10*d {
 		d *=10
 	}
 
-	for x>=0 {
+	for x>0 {
 		if x%10 != x/d {
 			return false
 		}
