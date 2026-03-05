@@ -1,10 +1,6 @@
 package javatest;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -108,7 +104,6 @@ class Solution {
         return h.next;
     }
 
-
     public int[] getConcatenation(int[] nums) {
         int n = nums.length;
         int [] ans = new int[2*n];  
@@ -116,5 +111,41 @@ class Solution {
             ans[i] = nums[i%n];
         }
         return ans;   
+    }
+
+    public int minOperations(String s) {
+
+        int n = s.length();
+        if(!s.contains("0")){
+            return n/2;
+        }
+        if(!s.contains("1")){
+            return n/2;
+        }
+        char[] c = s.toCharArray();
+
+        char[] u = new char[n];
+        char[] v = new char[n];
+
+
+        for (int i = 0; i < n-1; i+=2) {
+            u[i]='0';
+            u[i+1]='1';
+            v[i]='1';
+            v[i+1]='0';
+        }
+        if(n%2!=0){
+            u[n-1]='0';
+            v[n-1]='1';
+        }
+
+        System.out.println(Arrays.toString(c) + "\n" + Arrays.toString(v));
+        int a = 0;
+        int b = 0;
+        for(int i = 0; i<n; i++){
+            if(c[i]!=u[i]) a+=1;
+            if(c[i]!=v[i]) b+=1;
+        }
+        return Math.min(a, b);
     }
 }
